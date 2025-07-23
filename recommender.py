@@ -41,7 +41,7 @@ import requests
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-API_KEY = 'fe379ff7bd310f0e3b9e63ffc57aaa05'  # Replace with your TMDB key
+API_KEY = "Your TMDB Key Here Get It From https://www.themoviedb.org/signup"  # Replace with your TMDB key
 
 def fetch_poster(movie_title):
     url = f"https://api.themoviedb.org/3/search/movie?api_key={API_KEY}&query={movie_title}"
