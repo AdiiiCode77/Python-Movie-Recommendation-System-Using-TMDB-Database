@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎬 Movie Recommender</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 Movie Recommender</h1>
+    
+    <form method="POST" onsubmit="showSpinner()">
+      <label for="movie">Enter a movie name:</label>
+      <input type="text" id="movie" name="movie" placeholder="e.g. The Matrix" value="{{ selected_movie }}" required />
+      <button type="submit">Recommend 🎯</button>
+    </form>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="spinner-container" style="display: none;">
+      <div class="spinner"></div>
+      <p>Fetching recommendations...</p>
+    </div>
+
+    {% if recommendations %}
+      <div class="results">
+        <h2>Recommended Movies:</h2>
+        <div class="cards">
+          {% for rec in recommendations %}
+            <div class="card">
+              <img src="{{ rec.poster }}" alt="{{ rec.title }}">
+              <p>{{ rec.title }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% elif selected_movie %}
+      <div class="results">
+        <p>No recommendations found for "{{ selected_movie }}"</p>
+      </div>
+    {% endif %}
+  </div>
+
+  <script>
+    function showSpinner() {
+      document.getElementById("loadingSpinner").style.display = "block";
+    }
+  </script>
+</body>
+</html>
